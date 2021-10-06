@@ -1,0 +1,7 @@
+NOME 	   	COGNOME	    EMAIL					            MATRICOLA
+           
+Andrea		Zecca		andrea.zecca3@studio.unibo.it	    0000921314
+
+Giuseppe	Carrino	    giuseppe.carrino2@studio.unibo.it	0000915481
+
+Andrea		Loretti	    andrea.loretti2@studio.unibo.it	    0000920944

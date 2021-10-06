@@ -1,0 +1,25 @@
+Durante la creazione delle funzioni sono state fatte delle scelte implementative e anche delle aggiunte ai file già forniti,
+che verrano elencate qui di seguito.
+
+Scelte implementative:
+-I semafori dei terminal device sono stati alternati (scrittura/lettura) per ognuno degli 8 device (come per i semafori di Fase_2);
+-Vi è una singola funzione di scrittura e lettura da flash device il cui primo parametro definisce se si tratta di un'operazione di Read o di Write;
+
+
+Ottimizzazioni effettuate:
+-Aggiornamento del TLB utilizzando TLBP e TLBWI invece di utilizzare TLBCLR;
+-Impostazione dei frame precedentemente occupati dai processi terminati come "non occupati";
+-Miglioramento dell'algoritmo di rimpiazzamento: viene prima cercato un frame libero nella swap pool table;
+-Introduzione di un "Master Sempahore" per una migliore terminazione del test (SYSTEM HALTED);
+-Allocazione dei processi utenti direttamente dalla RAM;
+-Gestione di una "Lista libera di Support Structs" con le funzioni "deallocate" e "allocate" per rimuovere ed inserire nella lista libera delle Support Structures.
+
+
+Aggiunte ai file di fase 2
+-Nell'header "pandos_types.h" è stato aggiunto un campo nella struttura support_t. Questo campo denominato next, è un puntatore a support_t, utile per gestire la lista di free support_t per l'implementazione
+ delle funzioni "allocate" e "deallocate".
+-Nell'header "pandos_const.h" sono state aggiunte delle define:
+    -GETVPN restituisce il Virtual Page Number relativo al registro Entry_HI passato come parametro;
+    -Alcune definizioni di costanti utili per la gestione di devices (PRINTCHR, CHR_RCV, CHR_TRS, TRANSM_MASK, RECV_MASK, MAXSTRLEN);
+    -IEDISABLE e IEENABLE, funzioni utili a disattivare e riattivare gli interrupt per svolgere delle operazioni atomicametnte;
+    -POOLSTART definisce l'inizio della memoria dedicata ai Physical Frame Numbers.
